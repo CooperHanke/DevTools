@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  mongodb:
+    image: mongo:4.0
+    container_name: mongodb
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME # make sure this value is set in .env
+      - MONGO_INITDB_ROOT_PASSWORD # make sure this value is set in .env
+    volumes:
+      - mongodb-data:/data/db
+      - mongodb_config:/data/configdb
+    ports:
+      - 27017:27017
+    restart: unless-stopped
+volumes:
+  mongodb-data:
+    name: mongodb-data
+  mongodb_config:
+    name: mongodb_config
